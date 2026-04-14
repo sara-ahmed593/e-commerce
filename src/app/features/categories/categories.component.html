@@ -1,0 +1,21 @@
+<section class="py-12">
+    <div class="container">
+        <div class="title">
+         <h2 class="text-gray-800 fw-bold text-3xl">All  <span class="text-emerald-600">Category</span></h2>
+
+        </div>
+
+
+        <div class="mt-5 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            @for (category of CategoryList(); track category._id) {
+                <div   class="border-white flex flex-col items-center p-4 shadow-sm hover:shadow-md transition">
+                <div><img     [routerLink]="['/categories', category._id]"
+  class="size-20 rounded-full" [src]="category.image" [alt]="category.name"></div>
+                <div><h3>{{category.name}}</h3></div>
+            </div>
+            }
+        </div>
+
+ 
+    </div>
+</section>

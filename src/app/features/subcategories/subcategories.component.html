@@ -1,0 +1,96 @@
+
+
+
+ <header class="bg-[#22c55e] text-white py-8 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex items-center gap-4">
+            <div class="bg-white/20 p-1 rounded backdrop-blur-sm border border-white/30 shadow-sm">
+                    <i class="fa-solid fa-folder text-primary text-2xl"></i>
+            </div>
+            <div>
+                <h1 class="text-3xl font-bold tracking-tight">{{subcategoryName()}}</h1>
+                <p class="text-sm opacity-90 mt-0.5"> Browse {{subcategoryName()}} products  </p>
+            </div>
+        </div>
+
+         <p class="me-1 text-sm opacity-90 mt-0.5"> Showing  {{categoriesdetailslist().length}} products  </p>
+
+
+    </header>
+
+
+<div class="mt-5 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+
+  
+@for (item of categoriesdetailslist(); track item._id) {
+  
+     <div
+          class="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-300 group font-sans"
+        >
+          <div class="relative overflow-hidden mb-4">
+            <img
+            [src]="item.imageCover"
+              [alt]="item.title"
+              class="w-full h-auto object-contain"
+            />
+
+            <!--  ! ----------- Icons  Heart ! ----------- ....  -->
+            <div class="absolute top-2 right-2 flex flex-col gap-2">
+              <button
+                class="w-10 h-10 cursor-pointer bg-white shadow-sm border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-emerald-600 hover:text-white transition-all"
+              >
+                <i class="far fa-heart"></i>
+              </button>
+
+              <button
+                class="w-10 h-10 cursor-pointer bg-white shadow-sm border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-emerald-600 hover:text-white transition-all"
+              >
+                <i class="fas fa-sync-alt"></i>
+              </button>
+
+              <button
+                [routerLink]="['/details' , item.slug , item._id]"
+                class="w-10 cursor-pointer h-10 bg-white shadow-sm border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-emerald-600 hover:text-white transition-all"
+              >
+                <i class="far fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <p class="text-xs text-gray-400 tracking-wide">{{item.category.name}} </p>
+
+            <h3
+              class="text-lg font-medium text-slate-800 hover:text-emerald-600 cursor-pointer transition-colors"
+            >
+              {{item.title}} 
+            </h3>
+
+            <div class="flex items-center gap-1">
+              <div class="flex text-yellow-400 text-xs gap-0.5">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star text-gray-300"></i>
+              </div>
+              <span class="text-xs text-gray-400 font-medium">
+                {{item.ratingsAverage}} ({{item.ratingsQuantity}})</span
+              >
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <div class="flex flex-col">
+                <span class="text-lg font-medium text-slate-900"> {{item.price | currency: 'GBP'}}  </span>
+              </div>
+
+              <button (click)="addProductItemToCart(item._id)"
+                class="w-10 h-10 bg-emerald-600 text-white rounded-lg flex items-center justify-center hover:bg-emerald-700 transition-colors shadow-sm active:scale-95"
+              >
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+}
+  
+    </div>

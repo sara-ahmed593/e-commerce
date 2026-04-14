@@ -1,0 +1,50 @@
+export interface PaymentDataResponse {
+      status: string
+        data: PaymentData
+      
+}
+
+export interface PaymentData {
+
+    taxPrice:number
+    shippingPrice:number
+    totalOrderPrice:number
+    paymentMethodType:string
+    isPaid:boolean
+    isDelivered:boolean
+    _id:string
+    user:string
+    cartItem:CartItem[]
+    shippingAddress:ShippingAddress
+     createdAt:string
+    updatedAt:string
+    id:number
+    _v:number
+
+}
+
+export interface CartItem {
+    count:number
+    _id:string
+    product:string
+    price:number
+}
+
+export interface ShippingAddress {
+    details:string
+      phone:string
+      city:string
+}
+
+
+export interface CreateSessionResponse {
+      status: string
+        session: CreateSession
+      
+}
+export interface CreateSession {
+      url: string
+      success_url: string
+      cancel_url: string
+      
+    }
